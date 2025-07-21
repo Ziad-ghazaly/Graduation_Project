@@ -2,13 +2,13 @@
 
 This project presents a real-time mobile dental diagnosis system for detecting six types of oral diseases using YOLOv8. It is integrated with a Flutter-based mobile frontend and a FastAPI backend, and supports lightweight deployment for mobile use cases.
 
----
+--- 
 
 ## 📱 App Overview
 
 The app enables dental disease detection directly from the camera or gallery, returning bounding boxes and disease class labels. YOLOv8n was chosen for its balance of speed and accuracy, making it suitable for edge devices.
- 
-▶️ [Watch the app demo on LinkedIn]([https://www.linkedin.com/posts/your-post-link](https://www.linkedin.com/posts/ziad-ghazaly-a6828b283_artificialintelligence-deeplearning-yolov8-activity-7345865207572848640-FmqN?utm_source=share&utm_medium=member_desktop&rcm=ACoAAETrIDAB2VqJsrYbntfFRs1iXmofFvHGC1U))
+
+▶️ [Watch the app demo on LinkedIn](https://www.linkedin.com/posts/ziad-ghazaly-a6828b283_artificialintelligence-deeplearning-yolov8-activity-7345865207572848640-FmqN?utm_source=share&utm_medium=member_desktop&rcm=ACoAAETrIDAB2VqJsrYbntfFRs1iXmofFvHGC1U)
 
 
 ---
