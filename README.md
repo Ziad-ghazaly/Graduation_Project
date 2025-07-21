@@ -1,94 +1,144 @@
-# 🦷 Dental Disease Detection with YOLOv8  
-  **Graduation Project**
+# 🦷 Dental Disease Detection with YOLOv8 and FastAPI
 
-An AI-powered dental diagnosis system for identifying **oral diseases** such as caries, gingivitis, ulcers, and more, using real-time object detection with **YOLOv8**. The system is integrated into a **mobile Flutter application**, with **FastAPI backend** for inference.
-
----
-
-## 🎯 Objective
-
-To create a lightweight and accessible tool that enables **early detection of dental abnormalities** from intraoral images captured via smartphone, assisting patients and dentists in preliminary screening.
+This project presents a real-time mobile dental diagnosis system for detecting six types of oral diseases using YOLOv8. It is integrated with a Flutter-based mobile frontend and a FastAPI backend, and supports lightweight deployment for mobile use cases.
 
 ---
 
-## 📱 Project Components
+## 📱 App Overview
 
-| Component        | Description                                           |
-|------------------|-------------------------------------------------------|
-| 🔍 YOLOv8n       | Ultralytics model fine-tuned for 6 dental classes     |
-| 🐍 FastAPI       | Python backend for serving YOLOv8 inference           |
-| 📱 Flutter App   | Android mobile app (camera + result display)         |
-| 📦 ONNX + TF     | Exported model for broader deployment compatibility  |
+The app enables dental disease detection directly from the camera or gallery, returning bounding boxes and disease class labels. YOLOv8n was chosen for its balance of speed and accuracy, making it suitable for edge devices.
+ 
+▶️ [Watch the app demo on LinkedIn]([https://www.linkedin.com/posts/your-post-link](https://www.linkedin.com/posts/ziad-ghazaly-a6828b283_artificialintelligence-deeplearning-yolov8-activity-7345865207572848640-FmqN?utm_source=share&utm_medium=member_desktop&rcm=ACoAAETrIDAB2VqJsrYbntfFRs1iXmofFvHGC1U))
+
 
 ---
 
-## 📊 Detected Dental Conditions
+## 🔍 Detected Dental Conditions
 
-| Class ID | Condition              |
-|----------|------------------------|
-| 0        | Calculus               |
-| 1        | Caries (Tooth Decay)   |
-| 2        | Gingivitis             |
-| 3        | Hypodontia             |
-| 4        | Tooth Discoloration    |
-| 5        | Ulcer                  |
-
----
-
-## 🧠 Model Training
-
-- **Base model**: `yolov8n.pt`  
-- **Framework**: [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics)  
-- **Dataset**: 6-class oral disease dataset, manually labeled in YOLO format
-- **Image size**: `320x320`
-- **Augmentation**: Extensive class-based augmentation using `albumentations`
-- **Split**: 75% train, 15% valid, 10% test
+| Class ID | Disease Name            |
+|----------|-------------------------|
+| 0        | Calculus                |
+| 1        | Caries                  |
+| 2        | Gingivitis              |
+| 3        | Hypodontia              |
+| 4        | Tooth Discoloration     |
+| 5        | Ulcer                   |
 
 ---
 
-### 📦 Dataset Preparation
+## 🧠 Model Architecture
 
-- Balanced dataset using under/over-sampling strategies
-- Class-specific augmentations applied for minority classes (e.g., `hypodontia`, `ulcer`)
-- Final dataset distribution:
-
-| Class             | Instances |
-|------------------|-----------|
-| Caries           | 10000     |
-| Hypodontia       | 5000      |
-| Ulcer            | 5000      |
-| Calculus         | 6000      |
-| Gingivitis       | 6000      |
-| Discoloration    | 4000      |
-
-> 📈 Class distribution is visualized in `balanced_distribution.png`
-
----
-
-### 🧪 Evaluation Results
-
-- **Test Accuracy**: ~92.6%
-- **Mean Precision / Recall / F1-score**: ~0.92
-- **YOLO Validation Metrics**: Precision, Recall, mAP@50, Confusion Matrix
-
-![Confusion Matrix](runs/detect/val19/confusion_matrix.png)
-
----
-
-### 📸 Sample Predictions
-
-![Detection Example](runs/detect/val19/val_batch0.jpg)
-
----
-
-## 🛠️ Inference & Deployment
-
-- The best YOLOv8 model was exported to:
-  - ✅ ONNX: `best.onnx`
-  - ✅ TensorFlow: `tf_model/`
-- Ready for integration with **FastAPI**, **Flutter**, or **TensorFlow Lite**
+- **Base Model:** YOLOv8n (Ultralytics)
+- **Training Backend:** PyTorch via Ultralytics wrapper
+- **Deployment:** Exported to ONNX and TensorFlow for further compatibility
 
 ```python
-# FastAPI endpoint receives an image and returns YOLOv8 predictions
-results = model.predict(image_path)
-results[0].show()  # Show prediction
+from ultralytics import YOLO
+model = YOLO("yolov8n.pt")
+```
+
+---
+
+## 📁 Dataset
+
+- **Dataset Size:** ~30K labeled images
+- **Classes:** 6 dental disease types
+- **Label Format:** YOLO format (.txt)
+- **Augmentation:** Custom augmentation pipeline per class (Albumentations)
+
+---
+
+## ⚙️ Training Configuration
+
+| Parameter        | Value           |
+|------------------|-----------------|
+| Image Size       | 512x512         |
+| Epochs           | 30              |
+| Batch Size       | 16              |
+| Optimizer        | Adam            |
+| Augmentations    | Class-specific  |
+| Hardware         | CUDA (GPU)      |
+
+---
+
+## 📊 Evaluation
+
+- Evaluation was performed using validation and test splits (15% + 10%)
+- Confusion matrix and precision-recall curves were generated
+
+---
+
+## 📦 Export and Deployment
+
+Model was exported to:
+- **ONNX:** For future inference with hardware-optimized runtimes
+- **TensorFlow SavedModel:** For mobile TensorFlow Lite conversion (optional)
+
+```python
+# Export to TensorFlow
+onnx_model = onnx.load("best.onnx")
+tf_rep = prepare(onnx_model)
+tf_rep.export_graph("tf_model")
+```
+
+---
+
+## 🌐 Backend API
+
+- **Framework:** FastAPI
+- **Purpose:** Host trained model and expose endpoints for mobile requests
+- **Endpoints:**
+  - `/predict` – Accepts image input and returns predictions
+  - `/health` – Basic API health check
+
+---
+
+## 💡 Features
+
+- Real-time detection on mobile
+- Lightweight model (YOLOv8n)
+- Balanced dataset through augmentation
+- Training visualization (loss curves, class distribution)
+- Exportable for ONNX/TensorFlow
+
+---
+
+## 🛠 Future Improvements
+
+- Integrate Firebase or Supabase for storing cases
+- Add segmentation for detailed dental mapping
+- Improve model performance via more balanced data
+
+---
+
+## 🏁 How to Run
+
+1. Clone the repo
+2. Install requirements:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Train the model:
+   ```bash
+   yolo task=detect mode=train data=data.yaml model=yolov8n.pt epochs=30 imgsz=320
+   ```
+4. Start FastAPI backend:
+   ```bash
+   uvicorn app.main:app --reload
+   ```
+5. Use your Flutter app to make requests to the backend.
+
+---
+
+## 🗃 Related Files
+
+- `data.yaml`: Class definitions
+- `runs/`: Training results and metrics
+- `weights/`: Trained models (best.pt, ONNX, etc.)
+- `images/`: Visualizations and screenshots
+
+---
+
+## 📜 License
+
+This project is for academic and research purposes only.
