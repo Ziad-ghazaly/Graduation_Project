@@ -10,7 +10,7 @@ The app enables dental disease detection directly from the camera or gallery, re
 
  [Watch the app demo on LinkedIn](https://www.linkedin.com/posts/ziad-ghazaly-a6828b283_artificialintelligence-deeplearning-yolov8-activity-7345865207572848640-FmqN?utm_source=share&utm_medium=member_desktop&rcm=ACoAAETrIDAB2VqJsrYbntfFRs1iXmofFvHGC1U)
 
- ### Model detection Screenshots
+ ### sample predictions 
 
 <p align="center">
   <img src="screenshots/sample model predictions.jpeg" width="250"/>
