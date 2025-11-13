@@ -4,16 +4,25 @@ This project presents a real-time mobile dental diagnosis system for detecting s
 
 --- 
 
-## 📱 App Overview
+## App Overview
 
 The app enables dental disease detection directly from the camera or gallery, returning bounding boxes and disease class labels. YOLOv8n was chosen for its balance of speed and accuracy, making it suitable for edge devices.
 
-▶️ [Watch the app demo on LinkedIn](https://www.linkedin.com/posts/ziad-ghazaly-a6828b283_artificialintelligence-deeplearning-yolov8-activity-7345865207572848640-FmqN?utm_source=share&utm_medium=member_desktop&rcm=ACoAAETrIDAB2VqJsrYbntfFRs1iXmofFvHGC1U)
+ [Watch the app demo on LinkedIn](https://www.linkedin.com/posts/ziad-ghazaly-a6828b283_artificialintelligence-deeplearning-yolov8-activity-7345865207572848640-FmqN?utm_source=share&utm_medium=member_desktop&rcm=ACoAAETrIDAB2VqJsrYbntfFRs1iXmofFvHGC1U)
+
+ ### Model detection Screenshots
+
+<p align="center">
+  <img src="images/app_home.jpg" width="230" style="margin: 10px;"/>
+  <img src="images/app_detection.jpg" width="230" style="margin: 10px;"/>
+  <img src="images/app_results.jpg" width="230" style="margin: 10px;"/>
+  <img src="images/detection_example.jpg" width="230" style="margin: 10px;"/>
+</p>
 
 
 ---
 
-## 🔍 Detected Dental Conditions
+##  Detected Dental Conditions
 
 | Class ID | Disease Name            |
 |----------|-------------------------|
@@ -26,7 +35,7 @@ The app enables dental disease detection directly from the camera or gallery, re
 
 ---
 
-## 🧠 Model Architecture
+##  Model Architecture
 
 - **Base Model:** YOLOv8n (Ultralytics)
 - **Training Backend:** PyTorch via Ultralytics wrapper
@@ -48,7 +57,7 @@ model = YOLO("yolov8n.pt")
 
 ---
 
-## ⚙️ Training Configuration
+##  Training Configuration
 
 | Parameter        | Value           |
 |------------------|-----------------|
@@ -61,14 +70,14 @@ model = YOLO("yolov8n.pt")
 
 ---
 
-## 📊 Evaluation
+##  Evaluation
 
 - Evaluation was performed using validation and test splits (15% + 10%)
 - Confusion matrix and precision-recall curves were generated
 
 ---
 
-## 📦 Export and Deployment
+##  Export and Deployment
 
 Model was exported to:
 - **ONNX:** For future inference with hardware-optimized runtimes
@@ -83,7 +92,7 @@ tf_rep.export_graph("tf_model")
 
 ---
 
-## 🌐 Backend API
+##  Backend API
 
 - **Framework:** FastAPI
 - **Purpose:** Host trained model and expose endpoints for mobile requests
@@ -93,7 +102,7 @@ tf_rep.export_graph("tf_model")
 
 ---
 
-## 💡 Features
+##  Features
 
 - Real-time detection on mobile
 - Lightweight model (YOLOv8n)
@@ -103,7 +112,7 @@ tf_rep.export_graph("tf_model")
 
 ---
 
-## 🛠 Future Improvements
+##  Future Improvements
 
 - Integrate Firebase or Supabase for storing cases
 - Add segmentation for detailed dental mapping
@@ -111,7 +120,7 @@ tf_rep.export_graph("tf_model")
 
 ---
 
-## 🏁 How to Run
+##  How to Run
 
 1. Clone the repo
 2. Install requirements:
@@ -130,7 +139,7 @@ tf_rep.export_graph("tf_model")
 
 ---
 
-## 🗃 Related Files
+##  Related Files
 
 - `data.yaml`: Class definitions
 - `runs/`: Training results and metrics
@@ -139,6 +148,6 @@ tf_rep.export_graph("tf_model")
 
 ---
 
-## 📜 License
+## License
 
 This project is for academic and research purposes only.
