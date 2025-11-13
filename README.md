@@ -13,10 +13,9 @@ The app enables dental disease detection directly from the camera or gallery, re
  ### Model detection Screenshots
 
 <p align="center">
-  <img src="images/app_home.jpg" width="230" style="margin: 10px;"/>
-  <img src="images/app_detection.jpg" width="230" style="margin: 10px;"/>
-  <img src="images/app_results.jpg" width="230" style="margin: 10px;"/>
-  <img src="images/detection_example.jpg" width="230" style="margin: 10px;"/>
+  <img src="screenshots/sample_model_predictions.jpeg" width="250"/>
+  <img src="screenshots/sample_model_predictions (2).jpeg" width="250"/>
+  <img src="screenshots/sample_model_predictions (3).jpeg" width="250"/>
 </p>
 
 
